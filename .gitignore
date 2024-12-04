@@ -20,4 +20,5 @@ expo-env.d.ts
 # @end expo-cli
 
 .env.local
+.env
 package-lock.json

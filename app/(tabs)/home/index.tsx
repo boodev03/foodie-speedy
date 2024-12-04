@@ -1,9 +1,12 @@
-import { Text, View } from "react-native";
+import Home from "@/components/home/Home";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
 
 export default function HomeTab() {
   return (
-    <View className="h-screen justify-center items-center">
-      <Text>HOME SCREEN</Text>
-    </View>
+    <>
+      <Home />
+      <StatusBar style="auto" />
+    </>
   );
 }

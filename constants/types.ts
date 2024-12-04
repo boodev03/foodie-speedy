@@ -3,3 +3,9 @@ export interface TokenCache {
   saveToken: (key: string, token: string) => Promise<void>;
   clearToken?: (key: string) => void;
 }
+
+export interface NotifyPopupProps {
+  message: string;
+  type: "success" | "warning" | "error" | "info";
+  show: boolean;
+}

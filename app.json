@@ -34,6 +34,12 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "43eceb73-ead1-45d0-b799-f81b0a52b572"
+      }
+    },
+    "owner": "rotcivdev"
   }
 }
