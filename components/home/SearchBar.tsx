@@ -2,7 +2,7 @@ import FilterIcon from "@/assets/icons/FilterIcon";
 import SearchIcon from "@/assets/icons/SearchIcon";
 import { TextInput, View } from "react-native";
 
-const SearchBar = () => {
+const SearchBar = ({ onChange }: { onChange: (text: string) => void }) => {
   return (
     <View
       className="flex-row px-4 space-x-3 items-center w-full h-[48px] rounded-[8px] border border-neutral-100"
@@ -12,6 +12,7 @@ const SearchBar = () => {
       <TextInput
         className="text-base flex-1 text-neutral-900"
         placeholder="Categories, product, ..."
+        onChangeText={onChange}
       />
       <FilterIcon />
     </View>

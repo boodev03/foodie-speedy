@@ -15,7 +15,7 @@ const SpecialOffer = () => {
     <SafeAreaView className="px-3 mt-12">
       <ScreenHeader title="Special Offer" />
       <View className="my-4">
-        <SearchBar />
+        <SearchBar onChange={() => {}} />
       </View>
       <ProductList products={data || []} />
     </SafeAreaView>

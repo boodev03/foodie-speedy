@@ -20,7 +20,7 @@ const Home = () => {
       >
         <Header />
         <Slider />
-        <SearchBar />
+        <SearchBar onChange={() => {}} />
         <Categories />
         <HomeSpecialOffers />
       </ScrollView>

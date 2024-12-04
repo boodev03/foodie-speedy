@@ -4,7 +4,7 @@
     "slug": "foodie-speedy",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo.png",
     "scheme": "foodie-speedy",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -13,14 +13,9 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true,
-      "package": "com.fs.foodie-speedy"
+      "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
       "package": "com.fs.foodie-speedy"
     },
     "web": {

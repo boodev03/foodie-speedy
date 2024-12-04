@@ -6,6 +6,9 @@ export interface CartItem {
   toppings_price: number[];
   price: number;
   session_id: string;
+  product_name: string;
+  product_image: string;
+  price_original: number;
 }
 
 export interface ShoppingSession {

@@ -35,6 +35,7 @@ export const useAddProductToBasket = () => {
             session_id: "",
             toppings: payload.toppings,
             toppings_price: payload.toppings_price,
+            product_name: payload.product_name,
           };
           if (old.length === 0) {
             return [

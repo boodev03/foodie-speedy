@@ -10,4 +10,6 @@ export const config = {
   shoppingCollectionId: process.env
     .EXPO_PUBLIC_SHOPPING_COLLECTION_ID as string,
   cartCollectionId: process.env.EXPO_PUBLIC_CART_COLLECTION_ID as string,
+  orderCollectionId: process.env.EXPO_PUBLIC_ORDER_COLLECTION_ID as string,
+  paymentCollectionId: process.env.EXPO_PUBLIC_PAYMENT_COLLECTION_ID as string,
 };
