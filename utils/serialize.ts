@@ -1,3 +1,4 @@
+import { Order } from "@/constants/order.type";
 import { Product, Topping } from "@/constants/product.type";
 import { ShoppingSession } from "@/constants/shopping.type";
 import { Models } from "react-native-appwrite";
@@ -42,4 +43,16 @@ export const serializeDocumentToShoppingSession = (
     user_email: item.user_email,
   }));
   return shoppingSessions || [];
+};
+
+export const serializeDocumentsToOrders = (documents: Models.Document[]) => {
+  const orders: Order[] = documents.map((item) => ({
+    id: item.$id,
+    user_email: item.user_email,
+    discounted: item.discounted,
+    order_details: item.order_detail_ids,
+    payment: item.payment,
+    sub_total: item.sub_total,
+  }));
+  return orders || [];
 };

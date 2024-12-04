@@ -1,16 +1,30 @@
-import LocationFillIcon from "@/assets/icons/LocationFillIcon";
-import PaymentMethodFillIcon from "@/assets/icons/PaymentMethodFillIcon";
-import PromotionFillIcon from "@/assets/icons/PromotionFillIcon";
-import { formatToUSD } from "@/utils/formatCurrency";
+import { getShoppingCart } from "@/libs/appwrite/appwrite";
+import { useUser } from "@clerk/clerk-expo";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Text, View } from "react-native";
-import FSText from "../FSText";
 import { Button } from "../ui/Button";
 import BasketCheckoutSummary from "./BasketCheckoutSummary";
 import BasketProduct from "./BasketProduct";
-import BasketSection from "./BasketSection";
 
-const BasketProductList = () => {
+interface IProps {
+  productQuantities: { [id: string]: number };
+  handleIncreaseQuantity: (id: string) => void;
+  handleDecreaseQuantity: (id: string) => void;
+}
+
+const BasketProductList = ({
+  productQuantities,
+  handleIncreaseQuantity,
+  handleDecreaseQuantity,
+}: IProps) => {
+  const { user } = useUser();
+  const { data: shoppingSession } = useQuery({
+    queryKey: ["shopping.sesison", user?.emailAddresses[0].emailAddress],
+    queryFn: () =>
+      getShoppingCart(user?.emailAddresses[0].emailAddress as string),
+  });
+  console.log(shoppingSession);
   return (
     <View className="space-y-5 pb-[100px]">
       <View className="flex-row justify-between items-center">
@@ -19,12 +33,21 @@ const BasketProductList = () => {
       </View>
 
       {/* Product List */}
-      <View>
-        <BasketProduct />
+      <View className="grow">
+        {shoppingSession &&
+          shoppingSession?.length > 0 &&
+          shoppingSession?.[0]?.cartItems.map((cartItem) => (
+            <BasketProduct
+              cartItem={cartItem}
+              productQuantities={productQuantities}
+              handleIncreaseQuantity={handleIncreaseQuantity}
+              handleDecreaseQuantity={handleDecreaseQuantity}
+            />
+          ))}
       </View>
 
       {/* Delivery */}
-      <View>
+      {/* <View>
         <BasketSection
           title="Deliver to"
           icon={<LocationFillIcon />}
@@ -32,10 +55,10 @@ const BasketProductList = () => {
           href="(modal)/location-search"
           defaultContent="Select Your Location"
         />
-      </View>
+      </View> */}
 
       {/* Payment Method */}
-      <View>
+      {/* <View>
         <BasketSection
           title="Payment method"
           icon={<PaymentMethodFillIcon />}
@@ -43,10 +66,10 @@ const BasketProductList = () => {
           href="(modal)/location-search"
           defaultContent="Select Payment Method"
         />
-      </View>
+      </View> */}
 
       {/* Promotions */}
-      <View>
+      {/* <View>
         <BasketSection
           title="Promotions"
           icon={<PromotionFillIcon />}
@@ -54,12 +77,17 @@ const BasketProductList = () => {
           href="(modal)/location-search"
           defaultContent="Select Your Promotions"
         />
-      </View>
+      </View> */}
 
       {/* Checkout Summary */}
-      <View className="px-[2px]">
-        <BasketCheckoutSummary />
-      </View>
+      {shoppingSession && (
+        <View className="px-[2px]">
+          <BasketCheckoutSummary
+            cartItems={shoppingSession?.[0].cartItems || []}
+            productQuantities={productQuantities}
+          />
+        </View>
+      )}
     </View>
   );
 };

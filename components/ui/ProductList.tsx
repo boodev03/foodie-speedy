@@ -2,12 +2,22 @@ import { Product } from "@/constants/product.type";
 import React from "react";
 import { FlatList, Text, View } from "react-native";
 import ProductItem from "./ProductItem";
+import { useQuery } from "@tanstack/react-query";
+import { getAllLikedProducts } from "@/libs/appwrite/appwrite";
+import { useUser } from "@clerk/clerk-expo";
 
 interface IProps {
   products: Product[];
+  isLiked?: boolean;
 }
 
-const ProductList = ({ products }: IProps) => {
+const ProductList = ({ products, isLiked }: IProps) => {
+  const { user } = useUser();
+  const { data, isLoading } = useQuery({
+    queryKey: ["product.liked"],
+    queryFn: () =>
+      getAllLikedProducts(user?.emailAddresses[0].emailAddress as string),
+  });
   return (
     <View className="min-h-[400px]">
       {products.length === 0 ? (
@@ -19,9 +29,28 @@ const ProductList = ({ products }: IProps) => {
           nestedScrollEnabled
           data={products}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <ProductItem key={item.id} product={item} />
-          )}
+          renderItem={({ item }) => {
+            if (!isLiked) {
+              console.log(
+                data?.products.find((p) => p.id === item.id),
+                item.name,
+                "a"
+              );
+            }
+            return (
+              <ProductItem
+                key={item.id}
+                product={item}
+                isLiked={
+                  isLiked
+                    ? true
+                    : data?.products.find((p) => p.id === item.id)
+                    ? true
+                    : false
+                }
+              />
+            );
+          }}
           numColumns={2}
           columnWrapperStyle={{
             gap: 12,

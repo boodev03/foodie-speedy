@@ -1,9 +1,12 @@
-import { Text, View } from "react-native";
+import Liked from "@/components/liked/Liked";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
 
-export default function LikedTab() {
+export default function HomeTab() {
   return (
-    <View className="h-screen justify-center items-center">
-      <Text>LIKED SCREEN</Text>
-    </View>
+    <>
+      <Liked />
+      <StatusBar style="auto" />
+    </>
   );
 }

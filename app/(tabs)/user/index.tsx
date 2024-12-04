@@ -1,11 +1,8 @@
+import React from "react";
 import UserScreen from "@/components/user/UserScreen";
-import { StatusBar } from "expo-status-bar";
 
-export default function UserTab() {
-  return (
-    <>
-      <UserScreen />
-      <StatusBar style="auto" />
-    </>
-  );
-}
+const UserTab = () => {
+  return <UserScreen />;
+};
+
+export default UserTab;

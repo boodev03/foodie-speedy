@@ -18,16 +18,6 @@ const HomeSpecialOffers = () => {
         <Text className="text-[16px] leading-[19px] font-[Roboto-Bold] text-neutral-900">
           Special Offers
         </Text>
-        <TouchableOpacity
-          onPress={() => router.push("/special-offer")}
-          activeOpacity={0.8}
-          className="flex-row items-center"
-        >
-          <Text className="text-[16px] leading-[19px] font-[Roboto-Bold] text-primary-500 mr-[2px]">
-            View All
-          </Text>
-          <ArrowRightIcon height={19} />
-        </TouchableOpacity>
       </View>
       {/* Product */}
       <FlatList

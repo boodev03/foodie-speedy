@@ -94,9 +94,13 @@ const ProductDetail = () => {
     const payload: AddToBasketPayload = {
       product_id: id as string,
       quantity,
-      toppings: selectedToppings.map((topping) => topping.id),
+      toppings: selectedToppings.map(
+        (topping) => `${topping.name}-${topping.price}`
+      ),
       toppings_price: selectedToppings.map((topping) => topping.price),
       price: data?.price_discounted || 0,
+      product_name: data?.name || "",
+      product_image: data?.thumbnail || "",
     };
     try {
       await addProductToBasketMutation.mutateAsync({

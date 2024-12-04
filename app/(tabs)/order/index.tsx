@@ -1,9 +1,12 @@
-import { Text, View } from "react-native";
+import Order from "@/components/order/Order";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
 
 export default function OrderTab() {
   return (
-    <View className="h-screen justify-center items-center">
-      <Text>ORDER SCREEN</Text>
-    </View>
+    <>
+      <Order />
+      <StatusBar style="auto" />
+    </>
   );
 }

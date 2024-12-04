@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import BottomSheet from "../BottomSheet";
 import React, { useRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { router } from "expo-router";
 
 const Header = () => {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
@@ -34,9 +35,9 @@ const Header = () => {
             <ArrowDownIcon />
           </TouchableOpacity>
         </View>
-        <View>
+        <TouchableOpacity onPress={() => router.push("/basket")}>
           <ShoppingBagIcon />
-        </View>
+        </TouchableOpacity>
       </View>
     </>
   );

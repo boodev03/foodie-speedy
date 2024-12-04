@@ -1,3 +1,4 @@
+import LikedIconFill from "@/assets/icons/LikedIconFill";
 import LikedIconSmall from "@/assets/icons/LikedIconSmall";
 import RateStarIcon from "@/assets/icons/RateStarIcon";
 import { Product } from "@/constants/product.type";
@@ -7,9 +8,10 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 
 interface IProps {
   product: Product;
+  isLiked?: boolean;
 }
 
-const ProductItem = ({ product }: IProps) => {
+const ProductItem = ({ product, isLiked }: IProps) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
@@ -49,9 +51,11 @@ const ProductItem = ({ product }: IProps) => {
           {formatToUSD(product.price_discounted)}
         </Text>
       </View>
-      <View className="absolute top-2 right-3 w-6 h-6 rounded-full bg-white justify-center items-center">
-        <LikedIconSmall />
-      </View>
+      {isLiked && (
+        <View className="absolute top-2 right-3 w-7 h-7 rounded-full bg-white justify-center items-center">
+          {isLiked ? <LikedIconFill fill="#ff6347" /> : <LikedIconSmall />}
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
